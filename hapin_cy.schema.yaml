@@ -41,11 +41,10 @@ engine:
     - uniquifier
 
 speller:
-  alphabet: abcdefghijklmnopqrstuvwzxy,?;-.
-  initials: abcdefghijklmnopqrstuvwzxy,?;-.
+  alphabet: abcdefghijklmnopqrstuvwzxy
+  initials: abcdefghijklmnopqrstuvwzxy
   delimiter: " '"
   algebra:
-    #  强制转化 xa xe xo xu -> a e o u
     # 建议转化 gh hh sh ch -> g h s c 智能提示
     - abbrev/^([ghsc])h.+$/$1/
     - derive/([ghsc])h$/$1/
@@ -55,18 +54,13 @@ speller:
     # 建议转化 ng -> n 智能提示
     - abbrev/^(n)g.+$/$1/
     - derive/ng$/n/
-    # 转化 yu -> u
-    # 移除尾部为 x y
-    # BUG 多 x 需要被修复
+    # TODO 转化 zh 为 j
+    - abbrev/^zh.+$/j/
     - erase/^[^x]+([x|y])$/
 
 translator:
   dictionary: hapin_cy
   prism: hapin_cy
-
-# 标点符号映射
-punctuator:
-  import_preset: default
 
 # 按键映射
 key_binder:
